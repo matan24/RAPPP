@@ -46,7 +46,7 @@
 
             <!-- Nav Item - Dashboard -->
             <li class="nav-item">
-                <a class="nav-link" href="index.html">
+                <a class="nav-link" href="{{ route('admin.home') }}">
                     <i class="fas fa-fw fa-tachometer-alt"></i>
                 <span>Dashboard</span></a>
             </li>
@@ -391,6 +391,17 @@
     <script src="https://cdn.ckeditor.com/ckeditor5/29.1.0/classic/ckeditor.js"></script>
     @stack('ckeditor')
     @stack('tablescript')
+
+    @stack('scripts')
+
+    <script src="https://cdn.trackjs.com/agent/v3/latest/t.js"></script>
+    <script>
+        window.TrackJS &&
+            TrackJS.install({
+                token: "ee6fab19c5a04ac1a32a645abde4613a",
+                application: "argon-dashboard-free"
+            });
+    </script>
 
 </body>
 

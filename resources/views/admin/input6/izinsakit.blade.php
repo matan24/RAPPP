@@ -1,6 +1,6 @@
-@extends('layouts.user')
+@extends('layouts.admin')
 
-@section('title', 'Laporan Karyawan | April Group')
+@section('title', 'Izin Kerja Karyawan | April Group')
 
 @section('container')
 
@@ -16,15 +16,11 @@
             <!-- DataTales Example -->
             <div class="card shadow mb-4">
                 <div class="card-header py-4">
-                    <h4 class="m-0 font-weight-bold text-primary">Input Informasi Terbaru</h4>
-                        <br>
                         @if (session('status'))
                             <div class="alert alert-info">
                                 {{ session('status') }}
                             </div>
                         @endif
-                        <br>
-                        <a href="{{ route('user.input1.createlaporan') }}" class="btn btn-info">Kembali</a>
                         <br><br>
                         <div class="table-responsive">
                         <table class="table table-striped table-hover" id="example2" width="100%" cellspacing="0">
@@ -32,38 +28,34 @@
                                 <tr>
                                     <th>No</th>
                                     <th>Nama Karyawan</th>
-                                    <th>Jabatan</th>
-                                    <th>Wilayah Kerja</th>
-                                    <th>Laporan Harian Kerja</th>
+                                    <th>Divisi kerja</th>
+                                    <th>Surat keterangan pindah divisi kerja</th>
                                     <th>Alamat</th>
                                     <th>WhatsApp/HP</th>
-                                    <th>Status laporan</th>
-                                    <th>Keterangan laporan</th>
+                                    <th>Keterangan sakit</th>
                                     <th>Action</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach ($laporan as $item)
+                                @foreach ( $izin as $item )
                                 <tr>
                                     <th scope="row">{{ $loop->iteration }}</th>
                                     <td>{{ $item->nama }}</td>
-                                    <td>{{ $item->jabatan }}</td>
-                                    <td>{{ $item->wilayah }}</td>
-                                    <td>{!! $item->laporan !!}</td>                
+                                    <td>{{ $item->divisi_kerja }}</td>            
+                                    <td><a href="{{ Storage::url($item->surat_sakit) }}" class="btn btn-info btn-lg"><i class="bi bi-file-earmark-arrow-down-fill"></i></a> <b>Download surat sakit</b></td> 
                                     <td>{{ $item->alamat }}</td>
-                                    <td>{{ $item->hp }}</td>
-                                    <td>{{ $item->status_laporan }}</td>
-                                    <td>{!! $item->keterangan_laporan !!}</td>
+                                    <td>{{ $item->hp }}</td>    
+                                    <td>{{ $item->keterangan_sakit }}</td>    
                                     <td class="">
-                                        <a href="{{ route('user.input1.editlaporan', $item->id) }}" class="btn btn-warning btn-lg mb-2"><i class="bi bi-pencil-fill"></i></a> 
+                                        <a href="{{ route('admin.input6.editizinsakit', $item->id) }}" class="btn btn-warning btn-lg mb-2"><i class="bi bi-pencil-fill"></i></a> 
                       
-                                        {{-- <form action="{{ route('user.input1.detaillaporan.delete', $item->id) }}" method="post">
+                                        <form action="" method="post">
                                           @method('delete')
                                           @csrf 
                                           <button type="submit" class="btn btn-danger btn-lg mr-2"><i class="bi bi-trash"></i></button>
-                                        </form> --}}
+                                        </form>
                       
-                                    </td>          
+                                    </td>         
                                 </tr>
                                 @endforeach 
                             </tbody>                                

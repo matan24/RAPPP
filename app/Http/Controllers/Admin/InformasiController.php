@@ -13,11 +13,7 @@ class InformasiController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
-    {
-        //
-    }
-
+    
     /**
      * Show the form for creating a new resource.
      *
@@ -37,14 +33,15 @@ class InformasiController extends Controller
      */
     public function store(Request $request)
     {
-        $request->validate([        
+        $request->validate([
 
-            'judul' => 'required',
-            'keterangan_pekerjaan' => 'required',
-            'tanggal' => 'required',
-            'status_pekerjaan' => 'required',
+            'surat' => 'file'
 
         ]);
+
+        if($request->hasFile('surat')) {
+            $filepath = $request->file('surat')->store('post-informasi', 'public');
+        }
 
         $informasi = Informasi::create([
 
@@ -52,6 +49,7 @@ class InformasiController extends Controller
             'keterangan_pekerjaan' => $request->keterangan_pekerjaan,
             'tanggal' => $request->tanggal,
             'status_pekerjaan' => $request->status_pekerjaan,
+            'surat' => $filepath,
 
         ]);
 
@@ -90,6 +88,17 @@ class InformasiController extends Controller
      */
     public function update(Request $request, $id)
     {
+        $request->validate([
+
+            'surat' => 'file',
+
+        ]);
+
+        if($request->hasFile('surat')) {
+            $path = $request->file('surat')->store('post-informasi', 'public');
+        }
+
+
         Informasi::where("id", $id)
         ->update([
 
@@ -97,6 +106,7 @@ class InformasiController extends Controller
             'keterangan_pekerjaan' => $request->keterangan_pekerjaan,
             'tanggal' => $request->tanggal,
             'status_pekerjaan' => $request->status_pekerjaan,
+            'surat' => $filepath,
 
         ]);
       

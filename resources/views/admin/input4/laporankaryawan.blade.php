@@ -23,10 +23,9 @@
                                 {{ session('status') }}
                             </div>
                         @endif
-                        <br>
-                        <a href="" class="btn btn-info">Kembali</a>
                         <br><br>
-                        <table class="table table-bordered" id="example2" width="100%" cellspacing="0">
+                        <div class="table-responsive">
+                        <table class="table table-striped table-hover" id="example2" width="100%" cellspacing="0">
                             <thead>
                                 <tr>
                                     <th>No</th>
@@ -67,6 +66,7 @@
                                 @endforeach 
                             </tbody>                                
                         </table>
+                    </div>
                 </div>
             </div>
     

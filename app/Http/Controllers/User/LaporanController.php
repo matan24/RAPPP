@@ -121,6 +121,7 @@ class LaporanController extends Controller
      */
     public function destroy(Laporan $laporan)
     {
-        //
+        $laporan->delete();
+        return redirect()->route('user.input1.detaillaporan')->with('status', 'Laporan berhasil dihapus!');
     }
 }

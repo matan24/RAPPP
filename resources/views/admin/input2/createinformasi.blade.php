@@ -21,7 +21,7 @@
                 <br>
                 <a href="{{ route('admin.input2.detailinformasi') }}" class="btn btn-info">Lihat Informasi</a>
 
-                <form action="{{ route('admin.input2.createinformasi.store') }}" method="post">
+                <form action="{{ route('admin.input2.createinformasi.store') }}" method="post" enctype="multipart/form-data">
                     @csrf
                     <br>
                     @if (session('status'))
@@ -51,24 +51,14 @@
                         <input type="date" class="form-control" name="tanggal" id="tanggal">
                       </div>
                     </div>
-  
+
                     <div class="mb-3 row">
-                        <label for="status_pekerjaan" class="col-sm-2 col-form-label">Status pekerjaan</label>
-                        <div class="col-sm-8">
-                            <select id="status_pekerjaan" name="status_pekerjaan" class="form-control custom-select">
-                                <option selected disabled>Pilih</option>
-                                <option>
-                                  Selesaikan dalam hari ini
-                                </option>
-                                <option>
-                                  Selesaikan dalam minggu ini
-                                </option>
-                                <option>
-                                  Selesaikan minggu depan
-                                </option>  
-                            </select>
-                        </div>
-                    </div> 
+                      <label for="surat" class="col-sm-2 col-form-label">Surat Informasi</label>
+                      <div class="col-sm-8">
+                        <input type="file" class="form-control" name="surat" id="surat">
+                      </div>
+                    </div>
+  
         
                     <div class="col-sm-8">
                         <button type="submit" class="btn btn-info">Simpan</button>

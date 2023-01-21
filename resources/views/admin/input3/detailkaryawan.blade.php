@@ -26,7 +26,8 @@
                     <br>
                     <a href="{{ route('admin.input3.karyawan') }}" class="btn btn-info">Kembali</a>
                     <br><br>
-                    <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                    <div class="table-responsive">
+                    <table class="table table-striped table-hover" id="dataTable" width="100%" cellspacing="0">
                         <thead>
                             <tr>
                                 <th>No</th>
@@ -65,6 +66,7 @@
                             @endforeach   
                         </tbody>                                
                     </table>
+                </div>
             
             </div>
         </div>

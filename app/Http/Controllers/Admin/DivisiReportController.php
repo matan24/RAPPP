@@ -3,21 +3,18 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Models\Laporan;
+use App\Models\Report;
+use App\Models\Divisi;
 use Illuminate\Http\Request;
 
-class ReportController extends Controller
+class DivisiReportController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function laporan()
-    {
-        $laporan = Laporan::all();
-        return view('admin.input4.laporankaryawan', compact('laporan'));
-    }
+
 
     /**
      * Show the form for creating a new resource.
@@ -46,9 +43,10 @@ class ReportController extends Controller
      * @param  \App\Models\Report  $report
      * @return \Illuminate\Http\Response
      */
-    public function show(Report $report)
+    public function pindahdivisi()
     {
-        //
+        $divisi = Divisi::all();
+        return view('admin.input5.pindahdivisi', compact('divisi'));
     }
 
     /**
@@ -57,10 +55,10 @@ class ReportController extends Controller
      * @param  \App\Models\Report  $report
      * @return \Illuminate\Http\Response
      */
-    public function editreport($id)
+    public function editkerja($id)
     {
-        $laporan = Laporan::find($id);
-        return view('admin.input4.editreport', compact('laporan'));
+        $divisi = Divisi::find($id);
+        return view('admin.input5.editkerja', compact('divisi'));
     }
 
     /**
@@ -72,15 +70,16 @@ class ReportController extends Controller
      */
     public function update(Request $request, $id)
     {
-        Laporan::where("id", $id)
+
+        Divisi::where("id", $id)
         ->update([
-      
-            'status_laporan' => $request->status_laporan,
-            'keterangan_laporan' => $request->keterangan_laporan,
+
+            'berkas' => $request->berkas,
+            'keterangan_pindah' => $request->keterangan_pindah,
 
         ]);
-      
-        return redirect()->route('admin.input4.laporankaryawan', $id)->with('status', 'Laporan berhasil di update');
+
+        return redirect()->route('admin.input5.pindahdivisi', $id)->with('status', 'Data berhasil diupdate!');
     }
 
     /**
@@ -89,9 +88,9 @@ class ReportController extends Controller
      * @param  \App\Models\Report  $report
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Laporan $laporan)
+    public function destroy(Divisi $divisi)
     {
-        $laporan->delete();
-        return redirect()->route('admin.input4.laporankaryawan')->with('status', 'Data Berhasil dihapus!');
+        $divisi->delete();
+        return redirect()->route('admin.input5.pindahdivisi')->with('status', 'Data berhasil dihapus!');
     }
 }

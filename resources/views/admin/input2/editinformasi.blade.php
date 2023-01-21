@@ -18,7 +18,7 @@
             <div class="card-header py-4">
                 <h4 class="m-0 font-weight-bold text-primary">Input Informasi Terbaru</h4>
 
-                <form action="{{ route('admin.input2.editinformasi.update', $informasi->id ) }}" method="post">
+                <form action="{{ route('admin.input2.editinformasi.update', $informasi->id ) }}" method="post" enctype="multipart/form-data">
                     @method('patch')
                     @csrf
                     <br>
@@ -49,24 +49,14 @@
                         <input type="date" class="form-control" name="tanggal" id="tanggal" value="{{ $informasi->tanggal }}">
                       </div>
                     </div>
-  
+
                     <div class="mb-3 row">
-                        <label for="status_pekerjaan" class="col-sm-2 col-form-label">Status pekerjaan</label>
-                        <div class="col-sm-8">
-                            <select id="status_pekerjaan" name="status_pekerjaan" class="form-control custom-select">
-                                <option selected disabled>Pilih</option>
-                                <option {{ $informasi->status_pekerjaan == 'Selesaikan dalam hari ini' ? 'selected' : '' }} value="Selesaikan dalam hari ini">
-                                  Selesaikan dalam hari ini
-                                </option>
-                                <option {{ $informasi->status_pekerjaan == 'Selesaikan dalam minggu ini' ? 'selected' : '' }} value="Selesaikan dalam minggu ini">
-                                  Selesaikan dalam minggu ini
-                                </option>
-                                <option {{ $informasi->status_pekerjaan == 'Selesaikan minggu depan' ? 'selected' : '' }} value="Selesaikan minggu depan">
-                                  Selesaikan minggu depan
-                                </option>  
-                            </select>
-                        </div>
-                    </div> 
+                      <label for="surat" class="col-sm-2 col-form-label">Surat Informasi</label>
+                      <div class="col-sm-8">
+                        <input type="file" class="form-control" name="surat" id="surat">
+                      </div>
+                    </div>
+  
         
                     <div class="col-sm-8">
                         <button type="submit" class="btn btn-info">Update</button>

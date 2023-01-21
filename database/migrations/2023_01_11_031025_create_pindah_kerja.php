@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateInformasi extends Migration
+class CreatePindahKerja extends Migration
 {
     /**
      * Run the migrations.
@@ -13,12 +13,16 @@ class CreateInformasi extends Migration
      */
     public function up()
     {
-        Schema::create('informasi', function (Blueprint $table) {
+        Schema::create('pindah_kerja', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('judul');
-            $table->longText('keterangan_pekerjaan');
-            $table->string('tanggal');
+            $table->string('nama');
+            $table->string('divisi_kerja');
+            $table->string('pindah_divisi');
+            $table->string('alasan_pindah');
             $table->string('surat');
+            $table->string('alamat');
+            $table->string('berkas');
+            $table->string('keterangan_pindah');
             $table->timestamps();
         });
     }
@@ -30,6 +34,6 @@ class CreateInformasi extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('informasi');
+        Schema::dropIfExists('pindah_kerja');
     }
 }

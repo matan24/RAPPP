@@ -3,20 +3,20 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Models\Laporan;
+use App\Models\Izin;
 use Illuminate\Http\Request;
 
-class ReportController extends Controller
+class IzinSakitKaryawanController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function laporan()
+    public function izinsakit()
     {
-        $laporan = Laporan::all();
-        return view('admin.input4.laporankaryawan', compact('laporan'));
+        $izin = Izin::all();
+        return view('admin.input6.izinsakit', compact('izin'));
     }
 
     /**
@@ -43,10 +43,10 @@ class ReportController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Report  $report
+     * @param  \App\Models\Izinsakit  $izinsakit
      * @return \Illuminate\Http\Response
      */
-    public function show(Report $report)
+    public function show(Izinsakit $izinsakit)
     {
         //
     }
@@ -54,44 +54,43 @@ class ReportController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Report  $report
+     * @param  \App\Models\Izinsakit  $izinsakit
      * @return \Illuminate\Http\Response
      */
-    public function editreport($id)
+    public function editizinsakit($id)
     {
-        $laporan = Laporan::find($id);
-        return view('admin.input4.editreport', compact('laporan'));
+        $izin = Izin::find($id);
+        return view('admin.input6.editizinsakit', compact('izin'));
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Report  $report
+     * @param  \App\Models\Izinsakit  $izinsakit
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
     {
-        Laporan::where("id", $id)
-        ->update([
-      
-            'status_laporan' => $request->status_laporan,
-            'keterangan_laporan' => $request->keterangan_laporan,
+
+        Izin::where("id", $id)
+            ->update([
+
+            'keterangan_sakit' => $request->keterangan_sakit,
 
         ]);
-      
-        return redirect()->route('admin.input4.laporankaryawan', $id)->with('status', 'Laporan berhasil di update');
+
+        return redirect()->route('admin.input6.izinsakit', $id)->with('status', 'Data berhasil diupdate!');
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Report  $report
+     * @param  \App\Models\Izinsakit  $izinsakit
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Laporan $laporan)
+    public function destroy(Izinsakit $izinsakit)
     {
-        $laporan->delete();
-        return redirect()->route('admin.input4.laporankaryawan')->with('status', 'Data Berhasil dihapus!');
+        //
     }
 }

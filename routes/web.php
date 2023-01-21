@@ -7,7 +7,14 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\Admin\InformasiController;
 use App\Http\Controllers\Admin\DataKaryawanController;
 use App\Http\Controllers\Admin\ReportController;
+use App\Http\Controllers\Admin\DivisiReportController;
+use App\Http\Controllers\Admin\IzinSakitKaryawanController;
 use App\Http\Controllers\User\LaporanController;
+use App\Http\Controllers\User\PribadiController;
+use App\Http\Controllers\User\DivisiKerjaController;
+use App\Http\Controllers\User\IzinKerjaController;
+use App\Http\Controllers\User\CutiController;
+
 
 
 /*
@@ -54,8 +61,17 @@ Route::prefix('admin')->middleware('role:admin')->namespace('Admin')->group(func
 
     Route::get('/laporankaryawan',[ReportController::class, 'laporan'])->name('admin.input4.laporankaryawan');
     Route::get('/editreport/{id}',[ReportController::class, 'editreport'])->name('admin.input4.editreport');
-    Route::patch('/update/{id}',[ReportController::class, 'update'])->name('admin.input4.editreport.update');
+    Route::patch('/editreport/{id}',[ReportController::class, 'update'])->name('admin.input4.editreport.update');
     Route::delete('/laporankaryawan/{laporan}',[ReportController::class, 'destroy'])->name('admin.input4.laporankaryawan.delete');
+
+    Route::get('/pindahdivisi',[DivisiReportController::class, 'pindahdivisi'])->name('admin.input5.pindahdivisi');
+    Route::get('/editkerja/{id}',[DivisiReportController::class, 'editkerja'])->name('admin.input5.editkerja');
+    Route::patch('/update/{id}',[DivisiReportController::class, 'update'])->name('admin.input5.editkerja.update');
+    Route::delete('/update/{divisi}',[DivisiReportController::class, 'destroy'])->name('admin.input5.pindahdivisi.delete');
+
+    Route::get('/izinsakit',[IzinSakitKaryawanController::class, 'izinsakit'])->name('admin.input6.izinsakit');
+    Route::get('/editizinsakit/{id}',[IzinSakitKaryawanController::class, 'editizinsakit'])->name('admin.input6.editizinsakit');
+    Route::patch('/update/{id}',[IzinSakitKaryawanController::class, 'update'])->name('admin.input6.editizinsakit.update');
 
 });
 
@@ -69,6 +85,24 @@ Route::prefix('karyawan')->middleware('role:user')->namespace('User')->group(fun
     Route::get('/detaillaporan',[LaporanController::class, 'detaillaporan'])->name('user.input1.detaillaporan');
     Route::get('/editlaporan/{laporan}',[LaporanController::class, 'editlaporan'])->name('user.input1.editlaporan');
     Route::patch('/editlaporan/{id}',[LaporanController::class, 'update'])->name('user.input1.editlaporan.update');
+    Route::delete('/detaillaporan/{laporan}',[LaporanController::class, 'destroy'])->name('user.input1.detaillaporan.delete');
+
+    Route::get('/createdata',[PribadiController::class, 'createdata'])->name('user.input2.createdata');
+    Route::post('/createdata',[PribadiController::class, 'store'])->name('user.input2.createdata.store');
+    Route::get('/detaildata',[PribadiController::class, 'detaildata'])->name('user.input2.detaildata');
+    Route::get('/editdata/{pribadi}',[PribadiController::class, 'editdata'])->name('user.input2.editdata');
+    Route::patch('/update/{id}',[PribadiController::class, 'update'])->name('user.input2.editdata.update');
+    Route::delete('/detaildata/{pribadi}',[PribadiController::class, 'destroy'])->name('user.input2.detaildata.delete');
+
+    Route::get('/createkerja',[DivisiKerjaController::class, 'createkerja'])->name('user.input3.createkerja');
+    Route::post('/createkerja',[DivisiKerjaController::class, 'store'])->name('user.input3.createkerja.store');
+    Route::get('/detailkerja',[DivisiKerjaController::class, 'detailkerja'])->name('user.input3.detailkerja');
+
+    Route::get('/createizin',[IzinKerjaController::class, 'createizin'])->name('user.input4.createizin');
+    Route::post('/createizin',[IzinKerjaController::class, 'store'])->name('user.input4.createizin.store');
+    Route::get('/detailizin',[IzinKerjaController::class, 'detailizin'])->name('user.input4.detailizin');
+
+    Route::get('/createcuti',[CutiController::class, 'createcuti'])->name('user.input5.createcuti');
  
 });
 

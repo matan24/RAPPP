@@ -32,7 +32,8 @@
                      <div class="form-group"><button class="btn btn-primary">Import</button></div>
                 </form>
                     <br>
-                    <table class="table table-bordered" id="example2" width="100%" cellspacing="0">
+                    <div class="table-responsive">
+                    <table class="table table-striped table-hover" id="example2" width="100%" cellspacing="0">
                         <thead>
                             <tr>
                                 <th>No</th>
@@ -60,6 +61,7 @@
                             @endforeach   
                         </tbody>                                
                     </table>
+                  </div>
                 <br>
             </div>
         </div>

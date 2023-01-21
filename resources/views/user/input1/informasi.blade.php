@@ -8,10 +8,8 @@
        <div class="container-fluid">
 
         <!-- Page Heading -->
-        <h1 class="h3 mb-2 text-gray-800">Tables</h1>
-        <p class="mb-4">DataTables is a third party plugin that is used to generate the demo table below.
-            For more information about DataTables, please visit the <a target="_blank"
-                href="{{ asset('admin2/https://datatables.net') }}">official DataTables documentation</a>.</p>
+        <h1 class="h3 mb-2 text-gray-800">Update Informasi</h1>
+        <p class="mb-4">Kami akan selalu memberikan informasi terbaru</p>
 
                     <!-- Custom styles for this page -->
         
@@ -19,23 +17,24 @@
         <!-- DataTales Example -->
         <div class="card shadow mb-4">
             <div class="card-header py-4">
-                <h4 class="m-0 font-weight-bold text-primary">Input Informasi Terbaru</h4>
-                    <br>
                     @if (session('status'))
                         <div class="alert alert-info">
                             {{ session('status') }}
                         </div>
                     @endif
                     <br>
-                    <br><br>
-                    <table class="table table-bordered" id="example2" width="100%" cellspacing="0">
+                        @foreach ( $informasi as $item )
+                        <a href="{{ Storage::url($item->surat) }}" class="btn btn-info">Download Informasi</a>
+                        <br>
+                        @endforeach
+                    <div class="table-responsive">
+                    <table class="table table-striped table-hover" id="example2" width="100%" cellspacing="0">
                         <thead>
                             <tr>
                                 <th>No</th>
                                 <th>Informasi</th>
                                 <th>Keterangan pekerjaan</th>
                                 <th>Tanggal</th>
-                                <th>Status pekerjaan</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -44,12 +43,12 @@
                                 <th scope="row">{{ $loop->iteration }}</th>
                                 <td>{{ $item->judul }}</td>
                                 <td>{!! $item->keterangan_pekerjaan !!}</td>
-                                <td>{{ $item->tanggal }}</td>                
-                                <td>{{ $item->status_pekerjaan }}</td>
+                                <td>{{ $item->tanggal }}</td>
                             </tr>
                             @endforeach 
                         </tbody>                                
                     </table>
+                </div>
             </div>
         </div>
     </div>

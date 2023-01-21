@@ -29,14 +29,15 @@
                     <br>
                     <a href="{{ route('admin.input2.createinformasi') }}" class="btn btn-info">Kembali</a>
                     <br><br>
-                    <table class="table table-bordered" id="example2" width="100%" cellspacing="0">
+                    <div class="table-responsive">
+                    <table class="table table-striped table-hover" id="example2" width="100%" cellspacing="0">
                         <thead>
                             <tr>
                                 <th>No</th>
                                 <th>Informasi</th>
                                 <th>Keterangan pekerjaan</th>
                                 <th>Tanggal</th>
-                                <th>Status pekerjaan</th>
+                                <th>Surat Informasi</th>
                                 <th>Action</th>
                             </tr>
                         </thead>
@@ -47,7 +48,7 @@
                                 <td>{{ $item->judul }}</td>
                                 <td>{!! $item->keterangan_pekerjaan !!}</td>
                                 <td>{{ $item->tanggal }}</td>                
-                                <td>{{ $item->status_pekerjaan }}</td>
+                                <td><a href="{{ Storage::url($item->surat) }}" class="btn btn-info btn-lg"><i class="bi bi-eye-fill"></i></a></td>                 
                                 <td class="">
                                     <a href="{{ route('admin.input2.editinformasi', $item->id ) }}" class="btn btn-warning btn-lg mb-2"><i class="bi bi-pencil-fill"></i></a> 
                   
@@ -62,11 +63,7 @@
                             @endforeach 
                         </tbody>                                
                     </table>
-                    {{-- Current Page: {{ $informasi->currentPage() }}<br> --}}
-                    {{-- Jumlah Data: {{ $informasi->total() }}<br>
-                    Data perhalaman: {{ $informasi->perPage() }}<br> --}}
-                    {{-- <br>
-                    {{ $informasi->links() }}           --}}
+                </div>
             </div>
         </div>
     </div>
