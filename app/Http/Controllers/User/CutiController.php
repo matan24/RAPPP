@@ -25,7 +25,8 @@ class CutiController extends Controller
      */
     public function createcuti()
     {
-        return view('user.input5.createcuti');
+        $cuti = Cuti::all();
+        return view('user.input5.createcuti', compact('cuti'));
     }
 
     /**
@@ -36,7 +37,29 @@ class CutiController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            
+            'surat_cuti' => 'file',
+            
+        ]);
+
+        if($request->file('surat_cuti')) {
+            $filepath = $request->file('surat_cuti')->store('file_cuti', 'public');
+        }
+
+
+        $cuti = Cuti::create([
+
+            'nama' => $request->nama,
+            'divisi_kerja' => $request->divisi_kerja,
+            'wilayah_kerja' => $request->wilayah_kerja,
+            'surat_cuti' => $filepath,
+            'hp' => $request->hp,
+            'keterangan_cuti' => "Diproses",
+
+        ]);
+
+        return redirect()->route('user.input5.createcuti')->with('status', 'Data berhasil diinput!');
     }
 
     /**
@@ -45,9 +68,10 @@ class CutiController extends Controller
      * @param  \App\Models\Cuti  $cuti
      * @return \Illuminate\Http\Response
      */
-    public function show(Cuti $cuti)
+    public function detailcuti(Cuti $cuti)
     {
-        //
+        $cuti = Cuti::all();
+        return view('user.input5.detailcuti', compact('cuti'));
     }
 
     /**

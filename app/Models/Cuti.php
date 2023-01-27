@@ -7,5 +7,6 @@ use Illuminate\Database\Eloquent\Model;
 
 class Cuti extends Model
 {
-    use HasFactory;
+    protected $table = 'cuti_karyawan';
+    protected $fillable = ['nama', 'divisi_kerja', 'wilayah_kerja', 'surat_cuti', 'hp', 'keterangan_cuti'];
 }

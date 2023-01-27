@@ -25,6 +25,7 @@ class CreateDataPribadi extends Migration
             $table->string('wilayah');
             $table->string('alamat');
             $table->string('hp'); 
+            $table->string('data_lengkap'); 
             $table->timestamps();
         });
     }

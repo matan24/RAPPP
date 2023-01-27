@@ -59,6 +59,7 @@ class PribadiController extends Controller
             'wilayah' => $request->wilayah,
             'alamat' => $request->alamat,
             'hp' => $request->hp,
+            'data_lengkap' => "Diproses",
 
         ]);
 
@@ -120,6 +121,7 @@ class PribadiController extends Controller
             'wilayah' => $request->wilayah,
             'alamat' => $request->alamat,
             'hp' => $request->hp,
+            'data_lengkap' => $request->data_lengkap,
 
         ]);
 

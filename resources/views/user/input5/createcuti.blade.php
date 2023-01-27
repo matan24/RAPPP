@@ -17,9 +17,9 @@
         <div class="card shadow mb-4">
             <div class="card-header py-4">
               <br>
-              <a href="" class="btn btn-info">Detail Data</a>
+              <a href="{{ route('user.input5.detailcuti') }}" class="btn btn-info">Detail Data</a>
               <br>
-                <form action="" method="post" enctype="multipart/form-data">
+                <form action="{{ route('user.input5.createcuti.store') }}" method="post" enctype="multipart/form-data">
                     @csrf
                     <br>
                     @if (session('status'))
@@ -74,46 +74,16 @@
                     <div class="mb-3 row">
                         <label for="wilayah_kerja" class="col-sm-2 col-form-label">Wilayah kerja</label>
                         <div class="col-sm-8">
-                            <select id="wilayah_kerja" name="wilayah_kerja" class="form-control custom-select">
-                                <option selected disabled>Pilih</option>
-                                <option>
-                                  Back-end Developer
-                                </option>
-                                <option>
-                                  Front-end Developer
-                                </option>
-                                <option>
-                                  IT Support
-                                </option>
-                                <option>
-                                  Desktop Support
-                                </option>
-                                <option>
-                                  Mechanical Technician
-                                </option>
-                                <option>
-                                  Project Trainee Engineer, Procurement
-                                </option>
-                                <option>
-                                  Sr. Process Engineer,Paper Impv.,Paper
-                                </option>
-                                <option>
-                                  PLC Specialist,SS,Shipping
-                                </option>
-                                <option>
-                                  PTE, Instrument, BM1, PMO
-                                </option>
-                            </select>
-                        </div>
-                    </div> 
-
-
-                    <div class="mb-3 row">
-                        <label for="surat_sakit" class="col-sm-2 col-form-label">Surat cuti</label>
-                        <div class="col-sm-8">
-                          <input type="file" class="form-control" name="surat_sakit" id="surat_sakit">
+                          <input type="text" class="form-control" name="wilayah_kerja" id="wilayah_kerja">
                         </div>
                     </div>
+
+                    <div class="mb-3 row">
+                      <label for="surat_cuti" class="col-sm-2 col-form-label">Surat cuti</label>
+                      <div class="col-sm-8">
+                        <input type="file" class="form-control" name="surat_cuti" id="surat_cuti">
+                      </div>
+                  </div>
 
                     <div class="mb-3 row">
                         <label for="hp" class="col-sm-2 col-form-label">WhatsApp/HP</label>
@@ -133,22 +103,3 @@
     </div>
 
 @endsection
-@push('ckeditor')
-<script>
-  ClassicEditor
-    .create( document.querySelector( '#editor' ), {
-        toolbar: [ 'heading', '|', 'bold', 'italic', 'link', 'bulletedList', 'numberedList', 'blockQuote' ],
-        heading: {
-            options: [
-                { model: 'paragraph', title: 'Paragraph', class: 'ck-heading_paragraph' },
-                { model: 'heading1', view: 'h1', title: 'Heading 1', class: 'ck-heading_heading1' },
-                { model: 'heading2', view: 'h2', title: 'Heading 2', class: 'ck-heading_heading2' }
-            ]
-        }
-    } )
-    .catch( error => {
-        console.log( error );
-    } );
-
-</script>
-@endpush

@@ -1,6 +1,6 @@
-@extends('layouts.user')
+@extends('layouts.admin')
 
-@section('title', 'Data Karyawan | April Group')
+@section('title', 'Data Karyawan Admin | April Group')
 
 @section('container')
 
@@ -22,8 +22,6 @@
                             </div>
                         @endif
                         <br>
-                        <a href="{{ route('user.input2.createdata') }}" class="btn btn-info">Kembali</a>
-                        <br><br>
                         <div class="table-responsive">
                         <table class="table table-striped table-hover" id="example2" width="100%" cellspacing="0">
                             <thead>
@@ -59,12 +57,44 @@
                                     <td>{{ $item->hp }}</td>
                                     <td>{{ $item->data_lengkap }}</td>
                                     <td class="">
-                                        <a href="{{ route('user.input2.editdata', $item->id) }}" class="btn btn-warning btn-lg mb-2"><i class="bi bi-pencil-fill"></i></a> 
-                      
-                                        <form action="{{ route('user.input2.detaildata.delete', $item->id) }}" method="post">
+
+                                        <button type="button" class="btn btn-info btn-lg mb-2" data-toggle="modal" data-target="#myModal"><i class="bi bi-pencil-square"></i></button>
+
+                                        <div id="myModal" class="modal fade" role="dialog" tabindex="-1">
+                                            <div class="modal-dialog">
+                                              <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <div class="container text-center">
+                                                        <h5 class="modal-title">Update kelengkapan data</h5>   
+                                                    </div>                                                   
+                                                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                    <span aria-hidden="true">&times;</span>
+                                                  </button>
+                                                </div>
+                                                <form action="{{ route('update', $item->id) }}" method="post">
+                                                    @csrf
+                                                    <select id="data_lengkap" name="data_lengkap" class="form-control">
+                                                        <option selected disabled>Pilih</option>
+                                                        <option>
+                                                          Data lengkap
+                                                        </option>
+                                                        <option>
+                                                          Data masih kurang
+                                                        </option>
+                                                    </select>                                   
+                                                    <div class="modal-footer">
+                                                    <button type="button" class="btn btn-secondary mb-4" data-dismiss="modal">Close</button>
+                                                    <button type="submit" class="btn btn-primary mb-4">Simpan</button>
+                                                    </div>
+                                                </form>       
+                                              </div>
+                                            </div>
+                                          </div>
+                                    
+                                        <form action="" method="post">
                                           @method('delete')
                                           @csrf 
-                                          <button type="submit" class="btn btn-danger btn-lg mr-2"><i class="bi bi-trash"></i></button>
+                                          <button type="submit" class="btn btn-danger btn-lg"><i class="bi bi-trash"></i></button>
                                         </form>
                       
                                     </td>          

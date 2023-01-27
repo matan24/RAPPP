@@ -11,7 +11,7 @@
     <div class="card shadow mb-4">
         <div class="card-header py-4">
             <p class="alert alert-primary" style="width: 36rem;" >
-                <b>Data karyawan</b> <a href="#" class="btn btn-success btn-lg"><i class="bi bi-eye-fill"></i></a>
+                <b>Data karyawan</b> <a href="{{ route('admin.input7.datapribadikaryawan') }}" class="btn btn-success btn-lg"><i class="bi bi-eye-fill"></i></a>
             </p>
             <hr class="border border-primary">
             <div class="jumbotron jumbotron-fluid alert alert-primary">
@@ -26,7 +26,7 @@
                         <b>- Data izin tidak bekerja karyawan</b> <a href="" class="btn btn-dark btn-lg"><i class="bi bi-eye-fill"></i></a>
                     </p>
                     <p class="text-muted">
-                        <b>- Data pengajuan cuti karyawan</b> <a href="" class="btn btn-warning btn-lg"><i class="bi bi-eye-fill"></i></a>
+                        <b>- Data pengajuan cuti karyawan</b> <a href="{{ route('admin.input8.datacuti') }}" class="btn btn-warning btn-lg"><i class="bi bi-eye-fill"></i></a>
                     </p>
                     <p class="text-muted">
                         <b>- Ketentuan dan peraturan selama jam operasional kerja</b> <a href="" class="btn btn-info btn-lg"><i class="bi bi-eye-fill"></i></a>

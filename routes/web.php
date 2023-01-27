@@ -9,6 +9,8 @@ use App\Http\Controllers\Admin\DataKaryawanController;
 use App\Http\Controllers\Admin\ReportController;
 use App\Http\Controllers\Admin\DivisiReportController;
 use App\Http\Controllers\Admin\IzinSakitKaryawanController;
+use App\Http\Controllers\Admin\CutiKaryawanController;
+use App\Http\Controllers\Admin\DataPribadiController;
 use App\Http\Controllers\User\LaporanController;
 use App\Http\Controllers\User\PribadiController;
 use App\Http\Controllers\User\DivisiKerjaController;
@@ -73,6 +75,16 @@ Route::prefix('admin')->middleware('role:admin')->namespace('Admin')->group(func
     Route::get('/editizinsakit/{id}',[IzinSakitKaryawanController::class, 'editizinsakit'])->name('admin.input6.editizinsakit');
     Route::patch('/update/{id}',[IzinSakitKaryawanController::class, 'update'])->name('admin.input6.editizinsakit.update');
 
+    Route::get('/datacuti',[CutiKaryawanController::class, 'datacuti'])->name('admin.input8.datacuti');
+    Route::get('/editcuti/{id}',[CutiKaryawanController::class, 'editcuti'])->name('admin.input8.editcuti');
+    Route::patch('/update/{id}',[CutiKaryawanController::class, 'update'])->name('admin.input8.editcuti.update');
+    Route::delete('/datacuti/{cuti}',[CutiKaryawanController::class, 'destroy'])->name('admin.input8.datacuti.delete');
+
+    Route::get('/datapribadikaryawan',[DataPribadiController::class, 'datakaryawan'])->name('admin.input7.datapribadikaryawan');
+    Route::get('/editpribadi/{pribadi}',[DataPribadiController::class, 'editpribadi'])->name('editpribadi');
+    Route::post('/update/{id}',[DataPribadiController::class, 'update'])->name('update');
+
+
 });
 
 Route::prefix('karyawan')->middleware('role:user')->namespace('User')->group(function () {
@@ -103,6 +115,8 @@ Route::prefix('karyawan')->middleware('role:user')->namespace('User')->group(fun
     Route::get('/detailizin',[IzinKerjaController::class, 'detailizin'])->name('user.input4.detailizin');
 
     Route::get('/createcuti',[CutiController::class, 'createcuti'])->name('user.input5.createcuti');
+    Route::post('/createcuti',[CutiController::class, 'store'])->name('user.input5.createcuti.store');
+    Route::get('/detailcuti',[CutiController::class, 'detailcuti'])->name('user.input5.detailcuti');
  
 });
 

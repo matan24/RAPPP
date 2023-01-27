@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Data;
+use App\Models\Pribadi;
 use Illuminate\Http\Request;
 
 class DataKaryawanController extends Controller
@@ -13,10 +14,7 @@ class DataKaryawanController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
-    {
-        //
-    }
+
 
     /**
      * Show the form for creating a new resource.

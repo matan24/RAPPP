@@ -18,6 +18,7 @@ class Pribadi extends Model
         'jabatan', 
         'wilayah',
         'alamat',
-        'hp'
+        'hp',
+        'data_lengkap'
     ];
 }
