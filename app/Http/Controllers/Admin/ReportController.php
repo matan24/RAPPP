@@ -57,10 +57,10 @@ class ReportController extends Controller
      * @param  \App\Models\Report  $report
      * @return \Illuminate\Http\Response
      */
-    public function editreport($id)
+    public function editreport(Laporan $laporan)
     {
-        $laporan = Laporan::find($id);
-        return view('admin.input4.editreport', compact('laporan'));
+        $laporan = Laporan::all();
+
     }
 
     /**
@@ -70,7 +70,7 @@ class ReportController extends Controller
      * @param  \App\Models\Report  $report
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update_laporan(Request $request, $id)
     {
         Laporan::where("id", $id)
         ->update([

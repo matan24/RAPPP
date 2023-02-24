@@ -71,6 +71,8 @@
                                                     <span aria-hidden="true">&times;</span>
                                                   </button>
                                                 </div>
+                                                <br>
+                                                <div class="container">
                                                 <form action="{{ route('update', $item->id) }}" method="post">
                                                     @csrf
                                                     <select id="data_lengkap" name="data_lengkap" class="form-control">
@@ -83,10 +85,11 @@
                                                         </option>
                                                     </select>                                   
                                                     <div class="modal-footer">
-                                                    <button type="button" class="btn btn-secondary mb-4" data-dismiss="modal">Close</button>
+                                                    <button type="button" class="btn btn-secondary mb-4" data-dismiss="modal">Tutup</button>
                                                     <button type="submit" class="btn btn-primary mb-4">Simpan</button>
                                                     </div>
-                                                </form>       
+                                                </form>
+                                            </div>       
                                               </div>
                                             </div>
                                           </div>
@@ -97,7 +100,7 @@
                                           <button type="submit" class="btn btn-danger btn-lg"><i class="bi bi-trash"></i></button>
                                         </form>
                       
-                                    </td>          
+                                    </td>        
                                 </tr>
                                 @endforeach 
                             </tbody>                                

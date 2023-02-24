@@ -5,6 +5,7 @@ namespace App\Http\Controllers\User;
 use App\Http\Controllers\Controller;
 use App\Models\Laporan;
 use App\Models\Informasi;
+use App\Models\Data;
 use Illuminate\Http\Request;
 
 class LaporanController extends Controller
@@ -18,6 +19,12 @@ class LaporanController extends Controller
     {
         $informasi = Informasi::all();
         return view('user.input1.informasi', compact('informasi'));
+    }
+
+    public function karyawan()
+    {
+        $data = Data::all();
+        return view('user.input1.karyawan', compact('data'));
     }
 
     /**
@@ -59,7 +66,7 @@ class LaporanController extends Controller
             'alamat' => $request->alamat,
             'hp' => $request->hp,
             'status_laporan' => 0,
-            'keterangan_laporan' => 0,
+            'keterangan_laporan' => "Diproses",
 
         ]);
 

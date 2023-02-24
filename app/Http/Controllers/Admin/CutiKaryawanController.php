@@ -57,10 +57,10 @@ class CutiKaryawanController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function editcuti($id)
+    public function editcuti(Cuti $cuti)
     {
-        $cuti = Cuti::find($id);
-        return view('admin.input8.editcuti', compact('cuti'));
+        $cuti = Cuti::all();
+
     }
 
     /**
@@ -70,7 +70,7 @@ class CutiKaryawanController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update_cuti(Request $request, $id)
     {
         Cuti::where("id", $id)
         ->update([

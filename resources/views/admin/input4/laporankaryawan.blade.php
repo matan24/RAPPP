@@ -53,7 +53,53 @@
                                     <td>{{ $item->status_laporan }}</td>
                                     <td>{!! $item->keterangan_laporan !!}</td>
                                     <td class="">
-                                        <a href="{{ route('admin.input4.editreport', $item->id) }}" class="btn btn-warning btn-lg mb-2"><i class="bi bi-pencil-fill"></i></a> 
+                                       
+                                        <button type="button" class="btn btn-info btn-lg mb-2" data-toggle="modal" data-target="#myModal"><i class="bi bi-pencil-square"></i></button>
+
+                                        <div id="myModal" class="modal fade" role="dialog" tabindex="-1">
+                                            <div class="modal-dialog">
+                                              <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <div class="container text-center">
+                                                        <h5 class="modal-title">Update laporan kerja</h5>   
+                                                    </div>                                                   
+                                                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                    <span aria-hidden="true">&times;</span>
+                                                  </button>
+                                                </div>
+                                                <br>
+                                                <div class="container">
+                                                <form action="{{ route('update_laporan', $item->id) }}" method="post">
+                                                    @csrf
+                                                    <select id="status_laporan" name="status_laporan" class="form-control">
+                                                        <option selected disabled>Status laporan</option>
+                                                        <option>
+                                                          Diterima
+                                                        </option>
+                                                        <option>
+                                                          Ditolak
+                                                        </option>
+                                                        <option>
+                                                          Diproses
+                                                        </option>
+                                                        <option>
+                                                          Revisi
+                                                        </option>
+                                                    </select>  
+                                                    <br>
+                                                    <div class="input-group flex-nowrap">
+                                                        <textarea class="form-control" name="keterangan_laporan" id="keterangan_laporan" placeholder="Keterangan laporan"></textarea>
+                                                    </div>
+        
+                                                    <div class="modal-footer">
+                                                    <button type="button" class="btn btn-secondary mb-4" data-dismiss="modal">Tutup</button>
+                                                    <button type="submit" class="btn btn-primary mb-4">Simpan</button>
+                                                    </div>
+                                                </form>
+                                            </div>    
+                                              </div>
+                                            </div>
+                                          </div>
                       
                                         <form action="{{ route('admin.input4.laporankaryawan.delete', $item->id) }}" method="post">
                                           @method('delete')
@@ -111,3 +157,24 @@
     </script>
 
 @endpush
+
+@push('ckeditor')
+<script>
+  ClassicEditor
+    .create( document.querySelector( '#editor' ), {
+        toolbar: [ 'heading', '|', 'bold', 'italic', 'link', 'bulletedList', 'numberedList', 'blockQuote' ],
+        heading: {
+            options: [
+                { model: 'paragraph', title: 'Paragraph', class: 'ck-heading_paragraph' },
+                { model: 'heading1', view: 'h1', title: 'Heading 1', class: 'ck-heading_heading1' },
+                { model: 'heading2', view: 'h2', title: 'Heading 2', class: 'ck-heading_heading2' }
+            ]
+        }
+    } )
+    .catch( error => {
+        console.log( error );
+    } );
+
+</script>
+@endpush
+

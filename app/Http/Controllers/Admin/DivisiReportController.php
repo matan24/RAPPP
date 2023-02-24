@@ -55,10 +55,10 @@ class DivisiReportController extends Controller
      * @param  \App\Models\Report  $report
      * @return \Illuminate\Http\Response
      */
-    public function editkerja($id)
+    public function editkerja(Divisi $divisi)
     {
-        $divisi = Divisi::find($id);
-        return view('admin.input5.editkerja', compact('divisi'));
+        $divisi = Divisi::all();
+        
     }
 
     /**
@@ -68,7 +68,7 @@ class DivisiReportController extends Controller
      * @param  \App\Models\Report  $report
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update_divisi(Request $request, $id)
     {
 
         Divisi::where("id", $id)

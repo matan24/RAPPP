@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Data;
+use App\Models\Informasi;
 use App\Imports\UsersImport;
 use Maatwebsite\Excel\Facades\Excel;
 
@@ -30,6 +31,12 @@ class TambahKaryawanController extends Controller
     {
         $data = Data::all();
         return view('admin.input1.createkaryawan', compact('data'));
+    }
+
+    public function informasi()
+    {
+        $informasi = Informasi::all();
+        return view('admin.input1.informasi', compact('informasi'));
     }
 
 }

@@ -53,7 +53,100 @@
                                 <td>{{ $item->hp }}</td>
                                 <td>{{ $item->status }}</td>
                                 <td class="">
-                                    <a href="{{ route('admin.input3.editkaryawan', $item->id ) }}" class="btn btn-warning btn-lg mb-2"><i class="bi bi-pencil-fill"></i></a> 
+                                   
+                                    <button type="button" class="btn btn-info btn-lg mb-2" data-toggle="modal" data-target="#myModal"><i class="bi bi-pencil-square"></i></button>
+
+                                    <div id="myModal" class="modal fade" role="dialog" tabindex="-1">
+                                        <div class="modal-dialog">
+                                          <div class="modal-content">
+                                            <div class="modal-header">
+                                                <div class="container text-center">
+                                                    <h5 class="modal-title">Update data karyawan</h5>   
+                                                </div>                                                   
+                                              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                <span aria-hidden="true">&times;</span>
+                                              </button>
+                                            </div>
+                                            <br>
+                                            <div class="container">
+                                            <form action="{{ route('update_karyawan', $item->id) }}" method="post">
+                                                @method('patch')
+                                                @csrf
+                                                <div class="mb-3 row">
+                                                    <label for="nama" class="col-sm-2 col-form-label">Nama</label>
+                                                    <div class="col-sm-8">
+                                                      <input type="text" class="form-control" name="nama" id="nama"
+                                                       value="{{ $item->nama }}">
+                                                    </div>
+                                                  </div>
+                                
+                                                  <div class="mb-3 row">
+                                                    <label for="lahir" class="col-sm-2 col-form-label">Tempat</label>
+                                                    <div class="col-sm-8">
+                                                      <input type="text" class="form-control" name="lahir" id="lahir"
+                                                      value="{{ $item->lahir }}">
+                                                    </div>
+                                                  </div>
+                                
+                                                  <div class="mb-3 row">
+                                                    <label for="tanggal" class="col-sm-2 col-form-label">Tanggal</label>
+                                                    <div class="col-sm-8">
+                                                      <input type="date" class="form-control" name="tanggal" id="tanggal"
+                                                      value="{{ $item->tanggal }}">
+                                                    </div>
+                                                  </div>
+                              
+                                                  <div class="mb-3 row">
+                                                    <label for="jabatan" class="col-sm-2 col-form-label">Jabatan</label>
+                                                    <div class="col-sm-8">
+                                                      <input type="text" class="form-control" name="jabatan" id="jabatan"
+                                                      value="{{ $item->jabatan }}">
+                                                    </div>
+                                                  </div>
+                              
+                                                  <div class="mb-3 row">
+                                                    <label for="alamat" class="col-sm-2 col-form-label">Alamat</label>
+                                                    <div class="col-sm-8">
+                                                      <input type="text" class="form-control" name="alamat" id="alamat"
+                                                      value="{{ $item->alamat }}">
+                                                    </div>
+                                                  </div>
+                              
+                                                  <div class="mb-3 row">
+                                                    <label for="hp" class="col-sm-2 col-form-label">WhatsApp/HP</label>
+                                                    <div class="col-sm-8">
+                                                      <input type="text" class="form-control" name="hp" id="hp"
+                                                      value="{{ $item->hp }}">
+                                                    </div>
+                                                  </div>
+                                
+                                                  <div class="mb-3 row">
+                                                      <label for="status" class="col-sm-2 col-form-label">Status</label>
+                                                      <div class="col-sm-8">
+                                                          <select id="status" name="status" class="form-control custom-select">
+                                                              <option selected disabled>Pilih</option>
+                                                              <option>
+                                                                Aktif
+                                                              </option>
+                                                              <option>
+                                                                Non Aktif
+                                                              </option>
+                                                              <option>
+                                                                Dalam Masalah
+                                                              </option>  
+                                                          </select>
+                                                      </div>
+                                                  </div> 
+    
+                                                <div class="modal-footer">
+                                                <button type="button" class="btn btn-secondary mb-4" data-dismiss="modal">Tutup</button>
+                                                <button type="submit" class="btn btn-primary mb-4">Simpan</button>
+                                                </div>
+                                            </form>
+                                          </div>       
+                                          </div>
+                                        </div>
+                                      </div>
                   
                                     <form action="{{ route('admin.input3.detailkaryawan.delete', $item->id ) }}" method="post">
                                       @method('delete')

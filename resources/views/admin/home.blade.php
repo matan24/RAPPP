@@ -17,13 +17,13 @@
             <div class="jumbotron jumbotron-fluid alert alert-primary">
                 <div class="">
                     <p class="text-muted">
-                        <b>- Informasi terbaru</b> <a href="" class="btn btn-danger btn-lg"><i class="bi bi-eye-fill"></i></a>
+                        <b>- Informasi terbaru</b> <a href="{{ route('admin.input1.informasi') }}" class="btn btn-danger btn-lg"><i class="bi bi-eye-fill"></i></a>
                     </p>
                     <p class="text-muted">
-                        <b>- Data pengajuan pindah divisi kerja karyawan</b> <a href="" class="btn btn-primary btn-lg"><i class="bi bi-eye-fill"></i></a>
+                        <b>- Data pengajuan pindah divisi kerja karyawan</b> <a href="{{ route('admin.input5.pindahdivisi') }}" class="btn btn-primary btn-lg"><i class="bi bi-eye-fill"></i></a>
                     </p>
                     <p class="text-muted">
-                        <b>- Data izin tidak bekerja karyawan</b> <a href="" class="btn btn-dark btn-lg"><i class="bi bi-eye-fill"></i></a>
+                        <b>- Data izin tidak bekerja karyawan</b> <a href="{{ route('admin.input6.izinsakit') }}" class="btn btn-dark btn-lg"><i class="bi bi-eye-fill"></i></a>
                     </p>
                     <p class="text-muted">
                         <b>- Data pengajuan cuti karyawan</b> <a href="{{ route('admin.input8.datacuti') }}" class="btn btn-warning btn-lg"><i class="bi bi-eye-fill"></i></a>

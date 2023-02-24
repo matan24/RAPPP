@@ -12,7 +12,8 @@
             <p class="mb-4">DataTables is a third party plugin that is used to generate the demo table below.
                 For more information about DataTables, please visit the <a target="_blank"
                     href="{{ asset('admin2/https://datatables.net') }}">official DataTables documentation</a>.</p>
-    
+            
+            
             <!-- DataTales Example -->
             <div class="card shadow mb-4">
                 <div class="card-header py-4">
@@ -29,7 +30,7 @@
                                     <th>No</th>
                                     <th>Nama Karyawan</th>
                                     <th>Divisi kerja</th>
-                                    <th>Surat keterangan pindah divisi kerja</th>
+                                    <th>Surat keterangan sakit</th>
                                     <th>Alamat</th>
                                     <th>WhatsApp/HP</th>
                                     <th>Keterangan sakit</th>
@@ -47,15 +48,76 @@
                                     <td>{{ $item->hp }}</td>    
                                     <td>{{ $item->keterangan_sakit }}</td>    
                                     <td class="">
-                                        <a href="{{ route('admin.input6.editizinsakit', $item->id) }}" class="btn btn-warning btn-lg mb-2"><i class="bi bi-pencil-fill"></i></a> 
-                      
-                                        <form action="" method="post">
-                                          @method('delete')
-                                          @csrf 
-                                          <button type="submit" class="btn btn-danger btn-lg mr-2"><i class="bi bi-trash"></i></button>
+                                        
+                                        <button type="button" class="btn btn-warning btn-lg mb-2" data-toggle="modal" data-target="#myModal"><i class="bi bi-pencil-square"></i></button>
+
+                                        <!-- Modal -->
+                                        <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                            <div class="modal-dialog" role="document">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                <h5 class="modal-title" id="exampleModalLabel">Form Input</h5>
+                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                    <span aria-hidden="true">&times;</span>
+                                                </button>
+                                                </div>
+                                                <div class="modal-body">
+                                                <form action="{{ route('update_sakit', $item->id) }}" method="post">
+                                                    @csrf
+                                                    <div class="form-group">
+                                                    <select id="keterangan_sakit" name="keterangan_sakit" class="form-control">
+                                                        <option selected disabled>Pilih</option>
+                                                        <option>
+                                                          Diterima
+                                                        </option>
+                                                        <option>
+                                                          Ditolak
+                                                        </option>
+                                                        <option>
+                                                          Diproses
+                                                        </option>
+                                                    </select>    
+                                                    <small id="namaHelp" class="form-text text-muted">Pilih keterangan</small>
+                                                    </div>
+                                                    <div class="modal-footer">
+                                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Tutup</button>
+                                                        <button type="submit" class="btn btn-primary">Update</button>
+                                                    </div>
+                                                </form>
+                                                </div>
+                                            </div>
+                                            </div>
+                                        </div>
+
+                                        <form action="">
+                                            <button type="button" class="btn btn-danger btn-lg" data-toggle="modal" data-target="#exampleModal" data-id="{{ $item->id }}" data-whatever="@mdo"><i class="bi bi-trash"></i></button>
                                         </form>
-                      
-                                    </td>         
+                                        <!-- Modal -->
+                                        <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                            <div class="modal-dialog" role="document">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                    <span aria-hidden="true">&times;</span>
+                                                </button>
+                                                </div>
+                                                <div class="modal-body">
+                                                Apakah yakin menghapus data ini ?
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Tidak</button>
+                                                     {!! Form::open(['route' => ['izinsakit.destroy', 3], 'method' => 'delete']) !!}
+                                                     {!! Form::hidden('id',null,['id'=>'id-destroy']) !!}
+                                                    <button type="submit" class="btn btn-danger">Ya</button>
+                                                     {!! Form::close() !!}
+                                                </div>
+                                            </div>
+                                            </div>
+                                        </div>
+
+
+                                    </td>
                                 </tr>
                                 @endforeach 
                             </tbody>                                
@@ -103,5 +165,14 @@
             });
         });
     </script>
+   
+   <script>
+             $(document).on('click', '.delete', function() {
+            let id = $(this).attr('data-id');
+            $('#id-destroy').val(id);
+        });
+
+    </script>
+    
 
 @endpush

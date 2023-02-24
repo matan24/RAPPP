@@ -11,6 +11,7 @@ use App\Http\Controllers\Admin\DivisiReportController;
 use App\Http\Controllers\Admin\IzinSakitKaryawanController;
 use App\Http\Controllers\Admin\CutiKaryawanController;
 use App\Http\Controllers\Admin\DataPribadiController;
+use App\Http\Controllers\Admin\AbsensiController;
 use App\Http\Controllers\User\LaporanController;
 use App\Http\Controllers\User\PribadiController;
 use App\Http\Controllers\User\DivisiKerjaController;
@@ -46,6 +47,7 @@ Route::prefix('admin')->middleware('role:admin')->namespace('Admin')->group(func
 
     Route::get('/createkaryawan', 'TambahKaryawanController@create1')->name('admin.input1.createkaryawan');
     Route::post('/createkaryawan/import', 'TambahKaryawanController@import_excel')->name('admin.input1.import');
+    Route::get('/informasi', 'TambahKaryawanController@informasi')->name('admin.input1.informasi');
 
     Route::get('/createinformasi',[InformasiController::class, 'createinformasi'])->name('admin.input2.createinformasi');
     Route::post('/createinformasi',[InformasiController::class, 'store'])->name('admin.input2.createinformasi.store');
@@ -57,32 +59,37 @@ Route::prefix('admin')->middleware('role:admin')->namespace('Admin')->group(func
     Route::get('/karyawan',[DataKaryawanController::class, 'karyawan'])->name('admin.input3.karyawan');
     Route::post('/karyawan',[DataKaryawanController::class, 'store'])->name('admin.input3.karyawan.store');
     Route::get('/detailkaryawan',[DataKaryawanController::class, 'detailkaryawan'])->name('admin.input3.detailkaryawan');
-    Route::get('/editkaryawan/{data}',[DataKaryawanController::class, 'editkaryawan'])->name('admin.input3.editkaryawan');
-    Route::patch('/editkaryawan/{id}',[DataKaryawanController::class, 'update'])->name('admin.input3.editkaryawan.update');
+    Route::get('/editkaryawan/{data}',[DataKaryawanController::class, 'editkaryawan'])->name('editkaryawan');
+    Route::patch('/update_karyawan/{id}',[DataKaryawanController::class, 'update_karyawan'])->name('update_karyawan');
     Route::delete('/detailkaryawan/{data}',[DataKaryawanController::class, 'destroy'])->name('admin.input3.detailkaryawan.delete');
 
     Route::get('/laporankaryawan',[ReportController::class, 'laporan'])->name('admin.input4.laporankaryawan');
-    Route::get('/editreport/{id}',[ReportController::class, 'editreport'])->name('admin.input4.editreport');
-    Route::patch('/editreport/{id}',[ReportController::class, 'update'])->name('admin.input4.editreport.update');
+    Route::get('/editreport/{laporan}',[ReportController::class, 'editreport'])->name('editreport');
+    Route::post('/update_laporan/{id}',[ReportController::class, 'update_laporan'])->name('update_laporan');
     Route::delete('/laporankaryawan/{laporan}',[ReportController::class, 'destroy'])->name('admin.input4.laporankaryawan.delete');
 
     Route::get('/pindahdivisi',[DivisiReportController::class, 'pindahdivisi'])->name('admin.input5.pindahdivisi');
-    Route::get('/editkerja/{id}',[DivisiReportController::class, 'editkerja'])->name('admin.input5.editkerja');
-    Route::patch('/update/{id}',[DivisiReportController::class, 'update'])->name('admin.input5.editkerja.update');
+    Route::get('/editkerja/{divisi}',[DivisiReportController::class, 'editkerja'])->name('admin.input5.editkerja');
+    Route::post('/update_divisi/{id}',[DivisiReportController::class, 'update_divisi'])->name('update_divisi');
     Route::delete('/update/{divisi}',[DivisiReportController::class, 'destroy'])->name('admin.input5.pindahdivisi.delete');
 
     Route::get('/izinsakit',[IzinSakitKaryawanController::class, 'izinsakit'])->name('admin.input6.izinsakit');
-    Route::get('/editizinsakit/{id}',[IzinSakitKaryawanController::class, 'editizinsakit'])->name('admin.input6.editizinsakit');
-    Route::patch('/update/{id}',[IzinSakitKaryawanController::class, 'update'])->name('admin.input6.editizinsakit.update');
+    Route::get('/editizinsakit/{izin}',[IzinSakitKaryawanController::class, 'editizinsakit'])->name('editizinsakit');
+    Route::post('/update_sakit/{id}',[IzinSakitKaryawanController::class, 'update_sakit'])->name('update_sakit');
+    Route::delete('/izinsakit',[IzinSakitKaryawanController::class, 'destroy'])->name('admin.input6.izinsakit.delete');
 
     Route::get('/datacuti',[CutiKaryawanController::class, 'datacuti'])->name('admin.input8.datacuti');
-    Route::get('/editcuti/{id}',[CutiKaryawanController::class, 'editcuti'])->name('admin.input8.editcuti');
-    Route::patch('/update/{id}',[CutiKaryawanController::class, 'update'])->name('admin.input8.editcuti.update');
+    Route::get('/editcuti/{cuti}',[CutiKaryawanController::class, 'editcuti'])->name('editcuti');
+    Route::post('/update_cuti/{id}',[CutiKaryawanController::class, 'update_cuti'])->name('update_cuti');
     Route::delete('/datacuti/{cuti}',[CutiKaryawanController::class, 'destroy'])->name('admin.input8.datacuti.delete');
 
     Route::get('/datapribadikaryawan',[DataPribadiController::class, 'datakaryawan'])->name('admin.input7.datapribadikaryawan');
     Route::get('/editpribadi/{pribadi}',[DataPribadiController::class, 'editpribadi'])->name('editpribadi');
     Route::post('/update/{id}',[DataPribadiController::class, 'update'])->name('update');
+
+    Route::get('/createabsen',[AbsensiController::class, 'createabsen'])->name('admin.input10.createabsen');
+    Route::post('/absenmasuk',[AbsensiController::class, 'absenmasuk'])->name('admin.input10.createabsen.absenmasuk');
+    Route::post('/absenkeluar',[AbsensiController::class, 'absenkeluar'])->name('admin.input10.createabsen.absenkeluar');
 
 
 });
@@ -92,6 +99,7 @@ Route::prefix('karyawan')->middleware('role:user')->namespace('User')->group(fun
     Route::get('/', 'HomeController@index')->name('user.home');
 
     Route::get('/informasi',[LaporanController::class, 'informasi'])->name('user.input1.informasi');
+    Route::get('/karyawan',[LaporanController::class, 'karyawan'])->name('user.input1.karyawan');
     Route::get('/createlaporan',[LaporanController::class, 'createlaporan'])->name('user.input1.createlaporan');
     Route::post('/createlaporan',[LaporanController::class, 'store'])->name('user.input1.createlaporan.store');
     Route::get('/detaillaporan',[LaporanController::class, 'detaillaporan'])->name('user.input1.detaillaporan');

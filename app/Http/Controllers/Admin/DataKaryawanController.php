@@ -82,7 +82,7 @@ class DataKaryawanController extends Controller
      */
     public function editkaryawan(Data $data)
     {
-        return view('admin.input3.editkaryawan', compact('data'));
+        $data = Data::all();
     }
 
     /**
@@ -92,7 +92,7 @@ class DataKaryawanController extends Controller
      * @param  \App\Models\Data  $data
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update_karyawan(Request $request, $id)
     {
         Data::where("id", $id)
         ->update([
@@ -102,6 +102,7 @@ class DataKaryawanController extends Controller
             'tanggal' => $request->tanggal,
             'jabatan' => $request->jabatan,
             'alamat' => $request->alamat,
+            'hp' => $request->hp,
             'status' => $request->status,
 
         ]);

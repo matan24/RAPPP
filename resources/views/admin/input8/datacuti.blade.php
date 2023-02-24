@@ -48,12 +48,54 @@
                                     <td>{{ $item->keterangan_cuti }}</td> 
                                     <td class="">
 
-                                        <a href="{{ route('admin.input8.editcuti', $item->id) }}" class="btn btn-success btn-lg mb-2"><i class="bi bi-pencil-fill"></i></a> 
+                                        <button type="button" class="btn btn-info btn-lg mb-2" data-toggle="modal" data-target="#myModal"><i class="bi bi-pencil-square"></i></button>
+
+                                        <div id="myModal" class="modal fade" role="dialog" tabindex="-1">
+                                            <div class="modal-dialog">
+                                              <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <div class="container text-center">
+                                                        <h5 class="modal-title">Update data cuti</h5>   
+                                                    </div>                                                   
+                                                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                    <span aria-hidden="true">&times;</span>
+                                                  </button>
+                                                </div>
+                                                <br>
+                                                <div class="container">
+                                                <form action="{{ route('update_cuti', $item->id) }}" method="post">
+                                                    @csrf
+                                                    <select id="keterangan_cuti" name="keterangan_cuti" class="form-control">
+                                                        <option selected disabled>Status cuti</option>
+                                                        <option>
+                                                          Disetujui
+                                                        </option>
+                                                        <option>
+                                                          Ditolak
+                                                        </option>
+                                                        <option>
+                                                          Diproses
+                                                        </option>
+                                                        <option>
+                                                          Dibatalkan
+                                                        </option>
+                                                    </select>  
+        
+                                                    <div class="modal-footer">
+                                                    <button type="button" class="btn btn-secondary mb-4" data-dismiss="modal">Tutup</button>
+                                                    <button type="submit" class="btn btn-primary mb-4">Simpan</button>
+                                                    </div>
+                                                </form>
+                                            </div>    
+                                              </div>
+                                            </div>
+                                          </div>
+                      
                       
                                         <form action="{{ route('admin.input8.datacuti.delete', $item->id) }}" method="post">
                                           @method('delete')
                                           @csrf 
-                                          <button type="submit" class="btn btn-info btn-lg mr-2"><i class="bi bi-trash"></i></button>
+                                          <button type="submit" class="btn btn-danger btn-lg mr-2"><i class="bi bi-trash"></i></button>
                                         </form>
                       
                                     </td>         

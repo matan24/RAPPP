@@ -57,10 +57,10 @@ class IzinSakitKaryawanController extends Controller
      * @param  \App\Models\Izinsakit  $izinsakit
      * @return \Illuminate\Http\Response
      */
-    public function editizinsakit($id)
+    public function editizinsakit(Izin $izin)
     {
-        $izin = Izin::find($id);
-        return view('admin.input6.editizinsakit', compact('izin'));
+        $izin = Izin::all();
+
     }
 
     /**
@@ -70,7 +70,7 @@ class IzinSakitKaryawanController extends Controller
      * @param  \App\Models\Izinsakit  $izinsakit
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update_sakit(Request $request, $id)
     {
 
         Izin::where("id", $id)
@@ -91,6 +91,7 @@ class IzinSakitKaryawanController extends Controller
      */
     public function destroy(Izinsakit $izinsakit)
     {
-        //
+        $izin->delete();
+        return redirect()->route('admin.input6.izinsakit')->with('status', 'Data berhasil dihapus!');
     }
 }

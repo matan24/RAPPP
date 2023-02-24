@@ -20,6 +20,7 @@
     <!-- Custom styles for this template-->
     <link href="{{ asset('admin2/css/sb-admin-2.min.css') }}" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
+    
 
     @stack('tablestyle')
 
@@ -87,7 +88,7 @@
                     <div class="bg-white py-2 collapse-inner rounded">
                         <a class="collapse-item" href="{{ route('user.input1.informasi') }}">Informasi</a>
                         <a class="collapse-item" href="{{ route('user.input1.createlaporan') }}">Input laporan harian</a>
-                        <a class="collapse-item" href="utilities-animation.html">Animations</a>
+                        <a class="collapse-item" href="{{ route('user.input1.karyawan') }}">Daftar karyawan</a>
                         <a class="collapse-item" href="utilities-other.html">Other</a>
                     </div>
                 </div>
