@@ -89,6 +89,7 @@
                         <a class="collapse-item" href="{{ route('user.input1.informasi') }}">Informasi</a>
                         <a class="collapse-item" href="{{ route('user.input1.createlaporan') }}">Input laporan harian</a>
                         <a class="collapse-item" href="{{ route('user.input1.karyawan') }}">Daftar karyawan</a>
+                        <a class="collapse-item" href="{{ route('user.input6.presensi') }}">Presensi</a>
                         <a class="collapse-item" href="utilities-other.html">Other</a>
                     </div>
                 </div>

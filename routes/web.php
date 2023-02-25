@@ -17,6 +17,7 @@ use App\Http\Controllers\User\PribadiController;
 use App\Http\Controllers\User\DivisiKerjaController;
 use App\Http\Controllers\User\IzinKerjaController;
 use App\Http\Controllers\User\CutiController;
+use App\Http\Controllers\User\PresensiController;
 
 
 
@@ -125,6 +126,8 @@ Route::prefix('karyawan')->middleware('role:user')->namespace('User')->group(fun
     Route::get('/createcuti',[CutiController::class, 'createcuti'])->name('user.input5.createcuti');
     Route::post('/createcuti',[CutiController::class, 'store'])->name('user.input5.createcuti.store');
     Route::get('/detailcuti',[CutiController::class, 'detailcuti'])->name('user.input5.detailcuti');
+
+    Route::get('/presensi',[PresensiController::class, 'presensi'])->name('user.input6.presensi');
  
 });
 
